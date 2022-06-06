@@ -26,7 +26,17 @@
  function sign_in_with_facebook() {
      if((!is_user_logged_in(  )) {
          if(!get_option( 'users_can_register' )) {
-             return ('Registerations are closed for now!')
+             return ('Registerations are closed for now!');
+         } else {
+             global $handler;
+             $nonce = wp_create_nonce( "facebook_sgin_in_nonce" );
+             $link = admin_url( 'admin-ajax.php?action=facebook_sgin_in_nonce&nonce='.$nonce);
+             $redirect_to = $link;
+             $data = ["email"]
+             $fullUrl = $handler -> getLoginURL($redirect_to, $data);
+             return '
+                    <button onclick="window.location.href='. $fullUrl .';">Facebook Login</button>
+             '
          }
      }
   }
