@@ -97,7 +97,32 @@
               // Send an email notification to admin
               wp_new_user_notification($newUserID);
               // New user logging in
-              do_action)()
+              do_action('wp-login', $userSignIn, $userEmail);
+              wp_set_current_user($newUserID);
+              wp_set_auth_cookie($newUserID, true);
+              // Redirect new users to homepage
+              wp_redirect(home_url());
+              exit;
           }
+      } else {
+          //Existing users will be logged in
+          $user = get_user_by('email', $userEmail);
+          do_action('wp_login', $user -> userSignIn, $user -> userEmail);
+          wp_set_current_user($user -> ID);
+          wp_set_auth_cookie($user -> ID, true);
+          wp_redirect(home_url());
+          exit;
       }
   }
+
+  // Allow guests access to login or signup
+  function add_ajaxActions(){
+      add_action('wp_ajax_nopriv_facebook_sign_in', 'facebook_sign_in');
+      }
+add_action('admin_init', 'add_ajax_actions');
+
+//Redirect users to homepage after logout
+function logoutRedirect(){
+    wp_redirect(home_url());
+    exit();
+}
