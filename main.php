@@ -38,5 +38,43 @@
                     <button onclick="window.location.href='. $fullUrl .';">Facebook Login</button>
              '
          }
+     } else {
+         $current_user = wp_get_current_user(  );
+         return 'Hello ' . $current_user -> first_name . '! - <a href="/wp-login.php?action=logout">Log Out</a>';
      }
+  }
+
+  add_action( "wp_ajax_facebook_sign_in", "facebook_sign_in" );
+
+  function facebook_sign_in(){
+      global $handler, $FB;
+
+      if(!wp_verify_nonce( $_REQUEST['nonce'], "facebook_sign_in_nonce" )){
+          exit("This is not Allowed!");
+      }
+      try {
+          $access_token = $handler -> getAccessToken();
+      } catch(\Facebook\Exceptions\FacebookResponseException $e){
+          echo"Response Exception: " . $e -> getMessage();
+          exit();
+      }
+
+      if(!$access_token){
+          wp_redirect( home_url() );
+          exit;
+      }
+
+      $oAuth2Client = $FB -> getOAuth2Client();
+      if(!$access_token -> isLongLived())
+      $access_token = $oAuth2Client -> getLongLivedAccessToken($access_token);
+
+    $response = $FB -> get("me?fields=id, first_name, last_name, gender, email, birthday, location, picture.type(large), ", $access_token);
+      $userData = $response -> getGraphNode() -> asArray();
+      $userEmail = $userData['email'];
+
+      // Check if the user's email is registerd
+      if(!email_exists($userEmail)) {
+          // Generate a password
+          $byte = openssl_random_pseudo
+      }
   }
