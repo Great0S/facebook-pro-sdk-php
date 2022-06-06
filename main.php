@@ -80,7 +80,24 @@
           $userSignIn = strtolower($userData['first_name'].$userData['last_name']);
 
           $newUserID = wp_insert_user(array(
-              'user_'
-          ))
+              'user_login' => $userSignIn,
+              'user_pass' => $pass,
+              'user_email' => $userEmail,
+              'first_name' => $userData['first_name'],
+              'last_name' => $userData['last_name'],
+              'user_registered' => data('Y-m-d H:i:s'),
+              'billing_first_name' => $userData['first_name'],
+              'billing_last_name' => $userData['first_name'],
+              'billing_address_1' => $userData['location'],
+              'profile_photo' => $userData['picture.type(large)'],
+              'role' => 'subscriber'
+          )
+          );
+          if($newUserID) {
+              // Send an email notification to admin
+              wp_new_user_notification($newUserID);
+              // New user logging in
+              do_action)()
+          }
       }
   }
