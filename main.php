@@ -75,6 +75,12 @@
       // Check if the user's email is registerd
       if(!email_exists($userEmail)) {
           // Generate a password
-          $byte = openssl_random_pseudo
+          $byte = openssl_random_pseudo_bytes(2);
+          $pass = md5(bin2hex($byte));
+          $userSignIn = strtolower($userData['first_name'].$userData['last_name']);
+
+          $newUserID = wp_insert_user(array(
+              'user_'
+          ))
       }
   }
