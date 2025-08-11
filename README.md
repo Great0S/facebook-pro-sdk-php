@@ -1,13 +1,14 @@
-# Facebook Sign-In Plugin for WordPress
+# Facebook Pro SDK PHP
 
-A professional WordPress plugin that enables seamless Facebook authentication and user registration through a simple shortcode implementation.
+A professional WordPress plugin with enhanced Facebook PHP SDK that enables seamless Facebook authentication and user registration through a simple shortcode implementation.
 
 ## Overview
 
-This plugin integrates Facebook login functionality into WordPress websites, allowing users to authenticate using their Facebook credentials. It automatically handles user registration, profile data synchronization, and provides a secure authentication workflow.
+This plugin integrates Facebook login functionality into WordPress websites using an enhanced Facebook PHP SDK, allowing users to authenticate using their Facebook credentials. It automatically handles user registration, profile data synchronization, and provides a secure authentication workflow with advanced features.
 
 ## Features
 
+- **Enhanced Facebook PHP SDK** - Professional-grade SDK with advanced features
 - **Facebook OAuth2 Authentication** - Secure login via Facebook's authentication system
 - **Automatic User Registration** - Creates WordPress accounts for new Facebook users
 - **Profile Data Synchronization** - Imports user information from Facebook profiles
@@ -16,6 +17,8 @@ This plugin integrates Facebook login functionality into WordPress websites, all
 - **Admin Notifications** - Email alerts for new user registrations
 - **Customizable Redirects** - Configure post-login and logout destination URLs
 - **WooCommerce Compatible** - Syncs billing information for e-commerce sites
+- **Advanced Error Handling** - Comprehensive error management and logging
+- **Performance Optimized** - Caching and rate limiting features
 
 ## Requirements
 
